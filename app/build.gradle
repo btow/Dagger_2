@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.bobkov_vv.dagger2application"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+def support_Version='27.+'
+def dagger_Version='2.11'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+    implementation "com.android.support:appcompat-v7:$support_Version"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    //Dagger 2
+    compile "com.google.dagger:dagger:$dagger_Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_Version"
+    //Dagger-Android
+    compile "com.google.dagger:dagger-android:$dagger_Version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_Version"
+    //Если мы собираемся использовать support библиотеку
+    compile "com.google.dagger:dagger-android-support:$dagger_Version"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
